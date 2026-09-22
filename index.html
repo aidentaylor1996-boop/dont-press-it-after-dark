@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07050d">
-<title>DON'T PRESS IT: AFTER DARK</title>
+<title>DON'T PRESS IT: AFTER DARK — V2</title>
 <style>
 :root{--bg:#06040a;--panel:#120d19;--card:#181020;--line:#392748;--purple:#9144ff;--purple2:#cf9bff;--gold:#f5cb58;--red:#ff4568;--green:#47df8e;--white:#fbf9ff;--muted:#aaa1b5}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% -15%,#351158,#100818 34%,var(--bg) 72%);color:var(--white);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{overflow-x:hidden}
@@ -18,6 +18,78 @@ button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,inpu
 .reveal{background:radial-gradient(circle,#411b58,#100a16);border:1px solid var(--purple);border-radius:19px;padding:26px;text-align:center;margin:14px 0}.big{font-size:clamp(29px,6vw,62px);line-height:1;font-weight:1000}.timer{font-size:55px;font-weight:1000;color:var(--gold);text-align:center}.list{display:flex;flex-direction:column;gap:8px}.list-item{background:#0b0910;border:1px solid var(--line);border-radius:12px;padding:11px}
 .modal-wrap{position:fixed;inset:0;z-index:100;background:#000c;display:flex;align-items:center;justify-content:center;padding:17px}.modal{width:min(720px,100%);max-height:90%;overflow:auto;background:linear-gradient(145deg,#1a1025,#09070d);border:1px solid #684487;border-radius:23px;padding:21px;box-shadow:0 30px 100px #000}.private{background:#050407;border:1px dashed var(--gold);padding:25px;border-radius:17px;text-align:center}.private .mission{font-size:23px;line-height:1.35;font-weight:900;margin:18px 0}.progress{height:7px;background:#241c2c;border-radius:99px;overflow:hidden;margin:13px 0}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--purple),var(--gold));width:0}.toast{position:fixed;right:13px;bottom:13px;z-index:200;background:#19121f;border:1px solid #684487;border-radius:13px;padding:12px 15px;box-shadow:0 20px 60px #000b;font-weight:850}.pulse{animation:pulse .8s ease-in-out}.shake{animation:shake .4s linear}@keyframes pulse{50%{transform:scale(1.02);filter:brightness(1.3)}}@keyframes shake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}.hidden{display:none!important}.center{text-align:center}.small{font-size:12px}.good{color:var(--green)}.bad{color:var(--red)}
 @media(max-width:800px){.fields,.scoreboard{grid-template-columns:repeat(2,minmax(0,1fr))}.boxes{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}}@media(max-width:440px){.screen{padding-left:11px;padding-right:11px}.top{padding:10px}.brand{font-size:11px}.title{font-size:45px}.player{min-height:105px}.points{font-size:25px}.box{min-height:105px;font-size:21px}.panel{padding:14px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* AFTER DARK V2 VISUAL POLISH */
+:root{
+  --bg:#040308;--panel:#0d0915;--card:#151020;--line:#4a2b68;
+  --purple:#9b4dff;--purple2:#e1b9ff;--gold:#ffd45c;--red:#ff3f68;
+  --green:#48e69a;--white:#fffaff;--muted:#a9a0b4;
+}
+body{
+  background:
+    radial-gradient(900px 420px at 50% -8%,rgba(151,62,255,.34),transparent 62%),
+    radial-gradient(600px 360px at 0% 45%,rgba(255,44,105,.10),transparent 65%),
+    radial-gradient(600px 360px at 100% 65%,rgba(92,34,255,.12),transparent 65%),
+    #040308;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:36px 36px;
+  mask-image:linear-gradient(to bottom,black,transparent 88%);
+}
+.panel{
+  background:linear-gradient(145deg,rgba(24,14,37,.96),rgba(7,6,11,.96));
+  border:1px solid rgba(154,77,255,.38);
+  box-shadow:0 18px 70px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.035);
+}
+.btn{
+  position:relative;overflow:hidden;
+  transition:transform .14s ease,border-color .14s ease,box-shadow .14s ease,filter .14s ease;
+}
+.btn:active{transform:scale(.97)}
+.btn:hover{box-shadow:0 0 24px rgba(155,77,255,.18);filter:brightness(1.08)}
+.btn.primary{box-shadow:0 0 26px rgba(155,77,255,.20)}
+.btn.gold{box-shadow:0 0 26px rgba(255,212,92,.14)}
+.box{
+  min-height:145px;
+  border:1px solid rgba(170,104,255,.55);
+  background:
+    radial-gradient(circle at 50% 18%,rgba(155,77,255,.38),transparent 40%),
+    linear-gradient(145deg,#251039,#09070e 72%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 12px 30px rgba(0,0,0,.35);
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.box:hover{transform:translateY(-3px);box-shadow:0 12px 38px rgba(155,77,255,.22)}
+.box.revealed{
+  box-shadow:0 0 34px rgba(255,212,92,.20),inset 0 1px 0 rgba(255,255,255,.08);
+}
+.player{
+  background:linear-gradient(145deg,rgba(18,13,25,.98),rgba(7,6,10,.98));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+}
+.player.active{
+  box-shadow:0 0 0 1px rgba(155,77,255,.15),0 0 30px rgba(155,77,255,.18);
+}
+.stage{
+  box-shadow:0 0 18px rgba(155,77,255,.12);
+  letter-spacing:.08em;
+}
+.reveal{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(255,212,92,.13),transparent 60%),
+    linear-gradient(145deg,#20142b,#09070d);
+  border:1px solid rgba(255,212,92,.32);
+  box-shadow:0 0 50px rgba(255,212,92,.10);
+}
+.modal-wrap{backdrop-filter:blur(7px)}
+.modal{
+  background:linear-gradient(145deg,rgba(24,14,37,.99),rgba(5,4,8,.99));
+  border-color:rgba(190,120,255,.55);
+}
+.toast{backdrop-filter:blur(10px)}
+
 </style>
 </head>
 <body>
